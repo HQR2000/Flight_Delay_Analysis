@@ -1,5 +1,7 @@
 # Flight Delay Analysis
 
+![flight](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/flight.jpg)
+
 ## Abstract
 
 In this project, based on the 2009 ASA Statistical Computing and Graphics Data Expo, we pick the data of `2006 - 2007` and applied data analysis method to solve the following questions:
