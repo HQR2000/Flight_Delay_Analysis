@@ -29,11 +29,11 @@ This question is divided into three subquestions.
 
 ### Q1a. Best time of day to minimise delays
 
-![TOD]()
+![TOD](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/TOD.png)
 
 Being inspired by the visualization, we can know that the flights around `15:00` has the minimum avrage depature delay and average arrival delay.
 
-![POD]()
+![POD](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/POD.png)
 
 We can also devide a day into four period:
 
@@ -46,13 +46,13 @@ And we can see from the visualization that the flight on the morning, from `4:00
 
 ### Q1b. Day of the week to minimise delays
 
-![DOW]()
+![DOW](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/DOW.png)
 
 Same, from the visualization we can know that `Tuesday` has the minimum delay on depature while `Saturday` has the minimum delay on arrival.
 
 ### Q1c. Time of year to minimise delays
 
-![TOY]()
+![TOY](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/TOY.png)
 
 'November' is the best time of year to minimise arrival delay and `September` is the best time of year to minimise depature delay.
 
@@ -68,19 +68,19 @@ There are several methods to analysis this problem, here we introduce three solu
 
 ### Lineplot
 
-![Lineplot]()
+![Lineplot](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/Lineplot.png)
 
 From this plot we can compare the number of people flying in different years accross different months. We notice that compared to `2006`, more people take a flight on `2007`. Beside, we also notice that people usually don't like to take a flight on `Febuary` and the peak of number of people taking a flight is on `August`.
 
 ### Heatmap
 
-![Heatmap]()
+![Heatmap](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/Heatmap.png)
 
 For the heatmap, a brighter color means a higher number of people flying while a deeper color means less people are willing to take a flight.
 
 ### Lineplot with destination
 
-![LWD]()
+![LWD](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/LWD.png)
 
 Different from the first lineplot, we can also use different lines to represent different locations to see the trends of people flying to different destination accross each month. Since there are quite a lot destinations in the dataset, we only pick the top five as example here.
 
@@ -90,7 +90,7 @@ To detect the cascading failures as delays in one airport create delays in other
 
 According to our recognition, a delay in arrival normally lead to a delay in departure. Therefore, we can try to use linear regression methods to test whether their is a tight correlation between `ArrDelay` and `DepDelay`.
 
-![Q3]()
+![Q3](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/Q3.png)
 
 As we can directly see from the regression plot, feature `ArrDelay` has an obivous relationship with feature `DepDelay`.
 
@@ -104,7 +104,7 @@ $H1$: `DepDelay` and `ArrDelay` are dependent
 
 The significance level we set is `5%`, which means that if the P-value is less than `0.05`, we will reject the null hyphothesis.
 
-![Hyphothesis_Test]()
+![Hyphothesis_Test](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/Hyphothesis_Test.png)
 
 According to our hyphothesis test, we reject the null hyphothesis and draw a conclusion that the `ArrDelay` and `DepDelay` are highly correlated, which means that we can detect cascading failures as delays in one airport create delays in others.
 
