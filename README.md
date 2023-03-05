@@ -14,8 +14,30 @@ In this project, based on the 2009 ASA Statistical Computing and Graphics Data E
 
 4. Use the available variables to construct a model that predicts delays.
 
+The complete code for this project can be found in `./code/Flight_Delay_Analysis.ipynb`.
 
-## EDA&Data Preprocessing
+## Content
+
+- [EDA and Data Preprocessing](#index1)
+
+- [Q1. When is the best time of day, day of the week, and time of year to fly to minimise delays?](#index2)
+    - [Q1a. Best time of day](#index6)
+    - [Q1b. Best day of week](#index7)
+    - [Q1c. Best time of year](#index8)
+
+- [Q2. How does the number of people flying between different locations change over time?](#index3)
+    - [Lineplot](#index9)
+    - [Heatmap](#index10)
+    - [Lineplot(with destination)](#index11)
+
+- [Q3. Can you detect cascading failures as delays in one airport create delays in others?](#index4)
+
+- [Q4. Use the available variables to construct a model that predicts delays.](#index5)
+    - [Feature Selection](#index12)
+    - [Predictive Models](#index13)
+        - [Accuracy](#index14)
+        - [Mean Square Error](#index15)
+## <span id = 'index1'>EDA&Data Preprocessing</span>
 
 Before look into the four questions, we will first perform exploratory data analysis and data preprocessing.
 
@@ -25,11 +47,11 @@ After a briefly look at the dataframe containing the data from `2006 - 2007`, we
 
 After extracting, only column `CancellationCode` still contains missing value. However, this column is useless for solving the four question thus it can also be directly removed from the dataframe. Now, the dataframe no more include missing values.
 
-## Q1. When is the best time of day, day of the week, and time of year to fly to minimise delays? 
+## <span id = 'index2'>Q1. When is the best time of day, day of the week, and time of year to fly to minimise delays?</span>
 
 This question is divided into three subquestions.
 
-### Q1a. Best time of day to minimise delays
+### <span id = 'index6'>Q1a. Best time of day to minimise delays</span>
 
 ![TOD](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/TOD.png)
 
@@ -46,19 +68,19 @@ We can also devide a day into four period:
 
 And we can see from the visualization that the flight on the morning, from `4:00am - 11:59am` has the minimum average delay on both arrival delay and depature delay.
 
-### Q1b. Day of the week to minimise delays
+### <span id = 'index7'>Q1b. Day of the week to minimise delays</span>
 
 ![DOW](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/DOW.png)
 
 Same, from the visualization we can know that `Tuesday` has the minimum delay on depature while `Saturday` has the minimum delay on arrival.
 
-### Q1c. Time of year to minimise delays
+### <span id = 'index8'>Q1c. Time of year to minimise delays</span>
 
 ![TOY](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/TOY.png)
 
 'November' is the best time of year to minimise arrival delay and `September` is the best time of year to minimise depature delay.
 
-## Q2. How does the number of people flying between different locations change over time?
+## <span id = 'index3'>Q2. How does the number of people flying between different locations change over time?</span>
 
 There are several methods to analysis this problem, here we introduce three solutions:
 
@@ -68,25 +90,25 @@ There are several methods to analysis this problem, here we introduce three solu
 
 3. Line plot based on month, number of people and destination
 
-### Lineplot
+### <span id = 'index9'>Lineplot</span>
 
 ![Lineplot](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/Lineplot.png)
 
 From this plot we can compare the number of people flying in different years accross different months. We notice that compared to `2006`, more people take a flight on `2007`. Beside, we also notice that people usually don't like to take a flight on `Febuary` and the peak of number of people taking a flight is on `August`.
 
-### Heatmap
+### <span id = 'index10'>Heatmap</span>
 
 ![Heatmap](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/Heatmap.png)
 
 For the heatmap, a brighter color means a higher number of people flying while a deeper color means less people are willing to take a flight.
 
-### Lineplot with destination
+### <span id = 'index11'>Lineplot with destination</span>
 
 ![LWD](https://github.com/HQR2000/Flight_Delay_Analysis/blob/main/public/LWD.png)
 
 Different from the first lineplot, we can also use different lines to represent different locations to see the trends of people flying to different destination accross each month. Since there are quite a lot destinations in the dataset, we only pick the top five as example here.
 
-## Q3. Can you detect cascading failures as delays in one airport create delays in others?
+## <span id = 'index4'>Q3. Can you detect cascading failures as delays in one airport create delays in others?</span>
 
 To detect the cascading failures as delays in one airport create delays in others, the essential problem is to check whether column `ArrDelay` is highly correlated to column `DepDelay`.
 
@@ -110,11 +132,11 @@ The significance level we set is `5%`, which means that if the P-value is less t
 
 According to our hyphothesis test, we reject the null hyphothesis and draw a conclusion that the `ArrDelay` and `DepDelay` are highly correlated, which means that we can detect cascading failures as delays in one airport create delays in others.
 
-## Q4. Use the available variables to construct a model that predicts delays.
+## <span id = 'index5'>Q4. Use the available variables to construct a model that predicts delays.</span>
 
 To predict the time of delay, the task is to pick useful features and create predictive models to predict the `ArrDelay` column. 
 
-### Feature Selection
+### <span id = 'index12'>Feature Selection</span>
 
 For the feature selection, we first manully look into the data and delete those features that are obviously useless for making prediction.
 
@@ -144,7 +166,7 @@ for i in range(len(correlated_matrix.columns)):
 Q4_df = Q4_df.drop(highly_correlated, axis = 1)
 ```
 
-### Predictive Models
+### <span id = 'index13'>Predictive Models</span>
 
 After feature selection, we create three regression models to predict the delays and compare their performance.
 
@@ -157,7 +179,7 @@ These three models are:
 
 For the training of models, we applied `StandardScaler()` for the standard scaling of numerical data. And for parameters finetuning, we applied `GridSearchCV()` to find the best parameter for each model.
 
-**Accuracy**
+**<span id = 'index14'>Accuracy</span>**
 
 | Model                | Accuracy             | 
 | -------------------- | :-------------------:|
@@ -166,7 +188,7 @@ For the training of models, we applied `StandardScaler()` for the standard scali
 | `Ridge Regression`   | 0.9156553608192511   |
 
 ---
-**Mean Square Error**
+**<span id = 'index15'>Mean Square Error</span>**
 
 | Model                | Accuracy             | 
 | -------------------- | :-------------------:|
