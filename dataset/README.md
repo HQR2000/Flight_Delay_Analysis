@@ -1,1 +1,1 @@
-# Data can be found in the `Release` in the home page of this repository.
+# Data can be found in `Release` in the home page of this repository.
