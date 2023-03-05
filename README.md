@@ -126,7 +126,7 @@ For the feature selection, we first manully look into the data and delete those 
 
 Then, we calculate the correlation between features and delete the feature with a high correlation with another feature to reduce the feature dimensionality. The threshold we set here is `0.95`, which means that if two features have a correlation over 0.95, we will delete one of them.
 
-`
+```
 corr = Q4_df.corr()
 
 threshold = 0.95 
@@ -140,7 +140,7 @@ for i in range(len(correlated_matrix.columns)):
             highly_correlated.append(colname)
            
 Q4_df = Q4_df.drop(highly_correlated, axis = 1)
-`
+```
 
 ### Predictive Models
 
